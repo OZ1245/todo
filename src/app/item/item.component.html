@@ -1,0 +1,61 @@
+<div class="item">
+  <input
+    [id]="item.description"
+    type="checkbox"
+    [checked]="item.done"
+
+    (change)="item.done=!item.done"
+  />
+  <label [for]="item.description">{{ item.description }}</label>
+
+  <div
+    *ngIf="!editable"
+    class="btn-wrapper"
+  >
+    <button
+      class="btn"
+
+      (click)="editable=!editable"
+    >
+      Edit
+    </button>
+
+    <button
+      class="btn btn-warp"
+
+      (click)="remove.emit()"
+    >
+      Delete
+    </button>
+  </div>
+
+  <div *ngIf="editable">
+    <input
+      #editedItem
+      [value]="item.description"
+      type="text"
+      class="sm-text-input"
+      placeholder="edit item"
+
+      (keyup.enter)="saveItem(editedItem.value)"
+    />
+
+    <div class="btn-wrapper">
+      <button
+        class="btn"
+
+        (click)="editable=!editable"
+      >
+        Cancel
+      </button>
+
+      <button
+        class="btn btn-save"
+
+        (click)="saveItem(editedItem.value)"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</div>
