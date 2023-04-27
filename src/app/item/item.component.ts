@@ -10,11 +10,11 @@ import { Item } from "../item";
 export class ItemComponent {
   editable = false;
 
-  @Input() item: Item;
-  @Input() newItem: string;
+  @Input() item!: Item;
+  @Input() newItem!: string;
   @Output() remove = new EventEmitter<Item>();
 
-  saveItem(description) {
+  saveItem(description: string) {
     if (!description) {
       return;
     }
